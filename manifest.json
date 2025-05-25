@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "AI Assistant",
+  "version": "1.0",
+  "description": "An AI-powered assistant for your browser",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["config.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["chat-heads/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
